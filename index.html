@@ -131,7 +131,7 @@
  
 
                         </select>
-                        <button class="btn btn-success btn-copy">Copy paste</button>
+                       
                     </div>
                 </div>
 
@@ -289,9 +289,9 @@
         $('.btn-copy').on("click", function () {
             const val = $(this).parent().find("select,input").val();
             const _this = $(this);
-            _this.text("Copy paste").attr("disabled", true);
+            _this.text("").attr("disabled", true);
             setTimeout(() => {
-                _this.text("Copy paste!").removeAttr("disabled");
+                _this.text("Copy paste").removeAttr("disabled");
             }, 2000);
             navigator.clipboard.writeText(val);
         });
