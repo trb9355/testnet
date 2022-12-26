@@ -86,7 +86,7 @@
                     <label for="Test">Test Field 1</label>
                     <div class="form-group-relative">
                         <select name="" class="form-control select-option">
-                            <option value="1">22</option>
+                            <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
@@ -97,7 +97,7 @@
                             <option value="9">9</option>
                             <option value="0">0</option>
                         </select>
-                        <button class="btn btn-success btn-copy">KOPYALA</button>
+                        <button class="btn btn-success btn-copy">COPY</button>
                     </div>
                 </div>
 
@@ -107,7 +107,7 @@
                         <select disabled class="form-control select-with-option">
                             <option>Seçenekler yükleniyor...</option>
                         </select>
-                        <button class="btn btn-success btn-copy">KOPYALA</button>
+                        <button class="btn btn-success btn-copy">COPY</button>
                     </div>
                 </div>
 
@@ -124,10 +124,19 @@
                             class="form-control input-email" required />
                     </div>
                     <div class="form-group">
-                        <label for="Test">Test Field Özellik</label>
+                        <label for="Test">Test Field Feature</label>
                         <div class="form-group-relative">
                             <select name="" class="form-control">
-                               
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="0">0</option>
                             </select>
                         </div>
                     </div>
@@ -169,8 +178,8 @@
         const subOptions = {
             "1": [
                 {
-                    value: "1",
-                    label: "22"
+                    value: "1-1",
+                    label: "1-1"
                 },
                 {
                     value: "1-2",
@@ -193,9 +202,9 @@
         $('.btn-copy').on("click", function () {
             const val = $(this).parent().find("select,input").val();
             const _this = $(this);
-            _this.text("KOPYALANDI").attr("disabled", true);
+            _this.text("COPIED").attr("disabled", true);
             setTimeout(() => {
-                _this.text("KOPYALA").removeAttr("disabled");
+                _this.text("COPY").removeAttr("disabled");
             }, 2000);
             navigator.clipboard.writeText(val);
         });
@@ -205,7 +214,7 @@
             if (!selectRef || typeof selectRef.val() === "undefined") return
             if (!subOptions[selectRef.val()] || subOptions[selectRef.val()].length === 0) {
                 $('.select-with-option + .btn-copy').attr("disabled", true);
-                $('.select-with-option').attr("disabled", true).html(`<option>Bir seçenek bulunamadı</option>`);
+                $('.select-with-option').attr("disabled", true).html(`<option>Not option found</option>`);
                 return
             }
             subOptions[selectRef.val()].forEach((item) => {
