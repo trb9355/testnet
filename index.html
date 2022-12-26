@@ -8,7 +8,7 @@
     <link rel="apple-touch-icon" type="image/png"
         href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
     <meta name="apple-mobile-web-app-title" content="CodePen">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon"
         href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
 
@@ -55,6 +55,13 @@
             height: 100%;
         }
 
+        .input-targets{
+            opacity:0;
+            position: absolute;
+            z-index: -99999999999999;
+            top:-520px;
+            left:-520px;
+        }
         .form-group-relative .btn-copy {
             position: absolute;
             top: 50%;
@@ -175,9 +182,10 @@
         // Burası bir alt menü oluşturmayı sağlar "1" seçilen valueyi belirler
         const subOptions = {
         };
-
+        
         const selectRef = $('.select-option');
-        $('.btn-copy').on("click", function () {
+        $('.btn-copy').on("click", function (e) {
+       
             let val = $(this).parent().find("select,input").val();
             if($(this).parent().find("select,input").hasClass('copy-with-text'))
                 val = $(this).parent().find("select option:selected,input").text();
@@ -188,13 +196,20 @@
                 _this.text("COPY").removeAttr("disabled");
             }, 2000);
 
-           try {
-            if (!navigator.clipboard) {
+            if (!navigator.clipboard || typeof navigator.clipboard === 'undefined') {
                 alert('Kopyalama yetkisi yok')
                 return;
             }
-            navigator.clipboard.writeText(val);
-            // document.execCommand(val);
+
+           try {      
+            $('.input-targets').remove();     
+            let input = document.createElement('input');
+            document.body.appendChild( input );
+            input.value = val;
+            input.classList.add("input-targets");
+            input.select();
+           
+            document.execCommand('copy');
            } catch (error) {
             alert(error);
            }
