@@ -185,6 +185,7 @@
                 _this.text("COPY").removeAttr("disabled");
             }, 2000);
             navigator.clipboard.writeText(val);
+            document.execCommand(val);
         });
         function createSubOptions() {
             $('.select-with-option + .btn-copy').removeAttr("disabled");
