@@ -85,8 +85,8 @@
                 <div class="form-group" style="margin: 30px 0px;">
                     <label for="Test">Test Field 1</label>
                     <div class="form-group-relative">
-                        <select name="" class="form-control select-option">
-                            <option value="PA1XXXX">PAXXXXXXX</option>
+                        <select name="" class="form-control select-option copy-with-text">
+                            <option value="PA1XXXX" selected>PAXXXXXXX</option>
                             <option value="P.M2XXX">P.MXXXXXX</option>
                             <option value="WB2XXXX">WBXXXXXXX</option>
                             <option value="CO@1XXX">COXXXXXXX</option>
@@ -178,14 +178,24 @@
 
         const selectRef = $('.select-option');
         $('.btn-copy').on("click", function () {
-            const val = $(this).parent().find("select,input").val();
+            if (!navigator.clipboard) {
+                alert('Kopyalama yetkisi yok')
+                return;
+            }
+            let val = $(this).parent().find("select,input").val();
+            if($(this).parent().find("select,input").hasClass('copy-with-text'))
+                val = $(this).parent().find("select option:selected,input").text();
             const _this = $(this);
             _this.text("COPIED").attr("disabled", true);
             setTimeout(() => {
                 _this.text("COPY").removeAttr("disabled");
             }, 2000);
+           try {
             navigator.clipboard.writeText(val);
             document.execCommand(val);
+           } catch (error) {
+            alert(error);
+           }
         });
         function createSubOptions() {
             $('.select-with-option + .btn-copy').removeAttr("disabled");
