@@ -178,27 +178,28 @@
 
         const selectRef = $('.select-option');
         $('.btn-copy').on("click", function () {
-            if (!navigator.clipboard) {
-                alert('Kopyalama yetkisi yok')
-                return;
-            }
             let val = $(this).parent().find("select,input").val();
             if($(this).parent().find("select,input").hasClass('copy-with-text'))
                 val = $(this).parent().find("select option:selected,input").text();
             const _this = $(this);
             _this.text("COPIED").attr("disabled", true);
-            console.log(val);
+            
             setTimeout(() => {
                 _this.text("COPY").removeAttr("disabled");
             }, 2000);
 
            try {
+            if (!navigator.clipboard) {
+                alert('Kopyalama yetkisi yok')
+                return;
+            }
             navigator.clipboard.writeText(val);
-            document.execCommand(val);
+            // document.execCommand(val);
            } catch (error) {
             alert(error);
            }
         });
+
         function createSubOptions() {
             $('.select-with-option + .btn-copy').removeAttr("disabled");
             $('.select-with-option').removeAttr("disabled").html(``);
