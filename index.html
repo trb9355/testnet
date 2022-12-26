@@ -86,16 +86,14 @@
                     <label for="Test">Test Field 1</label>
                     <div class="form-group-relative">
                         <select name="" class="form-control select-option">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="0">0</option>
+                            <option value="PA1XXXX">PAXXXXXXX</option>
+                            <option value="P.M2XXX">P.MXXXXXX</option>
+                            <option value="WB2XXXX">WBXXXXXXX</option>
+                            <option value="CO@1XXX">COXXXXXXX</option>
+                            <option value="US21XXX">U2XXXXXXX</option>
+                            <option value="US23XXX">CXXXXXXXX</option>
+                            <option value="B13XXXX">BXXXXXXXX</option>
+                            <option value="ETX1XXX">EQXXXXXXX</option>
                         </select>
                         <button class="btn btn-success btn-copy">COPY</button>
                     </div>
@@ -127,14 +125,16 @@
                         <label for="Test">Test Field Feature</label>
                         <div class="form-group-relative">
                             <select name="" class="form-control">
-                                <option value="PA1XXXX">PAXXXXXXX</option>
-                                <option value="P.M2XXX">P.MXXXXXX</option>
-                                <option value="WB2XXXX">WBXXXXXXX</option>
-                                <option value="CO@1XXX">COXXXXXXX</option>
-                                <option value="US21XXX">U2XXXXXXX</option>
-                                <option value="US23XXX">CXXXXXXXX</option>
-                                <option value="B13XXXX">BXXXXXXXX</option>
-                                <option value="ETX1XXX">EQXXXXXXX</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="0">0</option>
                             </select>
                         </div>
                     </div>
@@ -174,26 +174,6 @@
     <script>
         // Burası bir alt menü oluşturmayı sağlar "1" seçilen valueyi belirler
         const subOptions = {
-            "1": [
-                {
-                    value: "1-1",
-                    label: "1-1"
-                },
-                {
-                    value: "1-2",
-                    label: "1-2"
-                }
-            ],
-            "2": [
-                {
-                    value: "2-1",
-                    label: "(2-1)"
-                },
-                {
-                    value: "2-2",
-                    label: "burası 2-2"
-                }
-            ]
         };
 
         const selectRef = $('.select-option');
@@ -211,8 +191,11 @@
             $('.select-with-option').removeAttr("disabled").html(``);
             if (!selectRef || typeof selectRef.val() === "undefined") return
             if (!subOptions[selectRef.val()] || subOptions[selectRef.val()].length === 0) {
-                $('.select-with-option + .btn-copy').attr("disabled", true);
-                $('.select-with-option').attr("disabled", true).html(`<option>Not option found</option>`);
+                const selectedValue = selectRef.val();
+                
+                // $('.select-with-option + .btn-copy').attr("disabled", true);
+                // $('.select-with-option').attr("disabled", true).html(`<option>Not option found</option>`);
+                $('.select-with-option').append(`<option value="${selectedValue}">${selectedValue}</option>`)
                 return
             }
             subOptions[selectRef.val()].forEach((item) => {
