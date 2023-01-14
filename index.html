@@ -1,338 +1,615 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    <style>
-        
-        :root{
-            --animation-status:paused;
-        }
-        body {
-            width: 100%;
-            min-height: 100vh;
-            margin: 50px 0px;
-            padding: 0;
-            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+<!doctype html>
+<html
+    lang="en"
+    dir="ltr"
+>
+    <head>
+                                    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Youtube video downloader online - Download Youtube videos in mp4</title>
+    <meta name="description" content="Download any video from YouTube and YouTube playlists in mp4 format, without installing additional programs! Unlimited YouTube videos and playlists downloading. Absolutely free. ">
+            <meta property="og:type" content="website">
+                <meta property="og:url" content="https://videodownloaderpro.net/en38/youtube-downloader">
+                    <meta property="og:locale" content="en">
+            <meta property="og:title" content="Youtube video downloader online - Download Youtube videos in mp4">
+            <meta property="og:description" content="Download any video from YouTube and YouTube playlists in mp4 format, without installing additional programs! Unlimited YouTube videos and playlists downloading. Absolutely free. ">
+                    <meta name="twitter:card" content="summary_large_image">
+                <meta name="twitter:title" content="Youtube video downloader online - Download Youtube videos in mp4">
+            <meta name="twitter:description" content="Download any video from YouTube and YouTube playlists in mp4 format, without installing additional programs! Unlimited YouTube videos and playlists downloading. Absolutely free. ">
+            <link rel="canonical" href="https://videodownloaderpro.net/en38/youtube-downloader">
+                    <link rel="alternate" hreflang="ar" href="https://videodownloaderpro.net/ar2/youtube-downloader">
+                    <link rel="alternate" hreflang="de" href="https://videodownloaderpro.net/de2/youtube-downloader">
+                        <link rel="alternate" hreflang="x-default" href="https://videodownloaderpro.net/en38/youtube-downloader">
+                <link rel="alternate" hreflang="en" href="https://videodownloaderpro.net/en38/youtube-downloader">
+                    <link rel="alternate" hreflang="es" href="https://videodownloaderpro.net/es2/youtube-downloader">
+                    <link rel="alternate" hreflang="fr" href="https://videodownloaderpro.net/fr2/youtube-downloader">
+                    <link rel="alternate" hreflang="hi" href="https://videodownloaderpro.net/hi2/youtube-downloader">
+                    <link rel="alternate" hreflang="it" href="https://videodownloaderpro.net/it2/youtube-downloader">
+                    <link rel="alternate" hreflang="ja" href="https://videodownloaderpro.net/ja2/youtube-downloader">
+                    <link rel="alternate" hreflang="pt" href="https://videodownloaderpro.net/pt2/youtube-downloader">
+                    <link rel="alternate" hreflang="ru" href="https://videodownloaderpro.net/ru2/youtube-downloader">
+                <link rel="icon" href="/favicon.ico" sizes="16x16">
+                                        <link rel="stylesheet" href="/css/app.css?id=31011894f03626103765">
+            <link rel="stylesheet" href="/css/downloader.css?id=05081f44f98fa1673117">
+                            <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-        }
-
-        .container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        .number-generator {
-            width: 250px;
-            height: 250px;
-
-            display: flex;
-            align-items: center;
-            font-size: 1.3rem;
-            margin-bottom: 40px;
-            justify-content: center;
-            position: relative;
-        }
-
-        .number-generator .number {
-            position: relative;
-            z-index: 111;
-        }
-
-        .generator-loader {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 1px solid rgba(1, 1, 1, .2);
-        }
-
-
-        .generator-loader .wrapper {
-            position: relative;
-            box-sizing: border-box;
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            width: 100%;
-            padding: calc(27px);
-            height: 100%;
-            animation: loop 4s infinite forwards;
-            animation-play-state: var(--animation-status);
-            
-        }
-
-        .generator-loader.smaller {
-            scale: 0.7;
-        }
-
-        .generator-loader.smaller .wrapper {
-            animation: reverse-loop 4s infinite forwards;
-            animation-play-state: var(--animation-status);
-
-        }
-
-        .generator-loader .wrapper i {
-            animation: loop 2s infinite backwards;
-            animation-play-state: var(--animation-status);
-        }
-
-        @keyframes loop {
-            from {
-                transform: rotate(0deg)
-            }
-
-            to {
-                transform: rotate(360deg)
-            }
-        }
-
-        @keyframes reverse-loop {
-            from {
-                rotate: 360deg;
-            }
-
-            to {
-                rotate: 0deg
-            }
-        }
-
-        .generator-actions {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .generator-actions a {
-            height: 20px;
-            opacity: 0;
-            font-size: .9rem;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .generator-actions a.show {
-            opacity: 1;
-            visibility: visible !important;
-            pointer-events: unset;
-
-        }
-
-        .generator-actions button {
-            margin-bottom: 15px;
-
-            border: 0px;
-            padding: 10px 30px;
-            border-radius: 5px;
-            cursor: pointer;
-            opacity: .8;
-            color: white;
-            transition: all 400ms;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .generator-actions button:hover {
-            opacity: 1;
-            transition: opacity 400ms;
-
-        }
-
-        .btn-start {
-            background-color: #212529;
-
-        }
-
-        .btn-stop {
-            background-color: #DC3545;
-        }
-
-        .btn-save {
-            background-color: #198754;
-        }
-    </style>
-</head>
-<body>
-    
+    ga('create', 'UA-164783303-1', 'auto');
+    ga('send', 'pageview');
+</script>
+            </head>
+    <body class="page_support_no">
+        <div class="main-wrapper-height">
+            <div class="main-wrapper-height-content">
+                <div class="header line">
     <div class="container">
-        <div class="number-generator">
-            <span class="number"><b id="generator-text"></b>x</span>
-            <div class="generator-loader">
-                <div class="wrapper">
-                    <i class="fa-solid fa-circle"></i>
-                    <i class="fa-solid fa-xmark"></i>
-                </div>
-            </div>
-            <div class="generator-loader smaller">
-                <div class="wrapper">
-                    <i class="fa-solid fa-circle"></i>
-                    <i class="fa-solid fa-xmark"></i>
-                </div>
+        <div class="header__left">
+            <img src='/assets/icon_128.png' width='54' height='54' alt='logo'/>
+            <a href="/en39/" class="logo_size_big">
+                Video Downloader Pro
+            </a>
+
+        </div>
+        <div class="header__center">
+            <div class="menu">
+                <a
+                    class="menu__link"
+                    href="/en39/"
+                >
+                    About
+                </a>
+                                    <a
+                        class="menu__link"
+                        href="/en1/articles/"
+                    >
+                        Articles
+                    </a>
+                                <a
+                    class="menu__link"
+                    href="/en39/#faq"
+                >
+                    Help
+                </a>
             </div>
         </div>
-        <div class="generator-actions">
-            <button class="btn-start" id="generator-button">Başlat</button>
-            <a href="javascript:;" id="reset-generator">Sıfırla</a>
+        <div class="header__right">
+                <div class='langWrapper'>
+                    <div class="lang">
+                                                <a
+                            href="/en38/youtube-downloader"
+                            class="lang__current lang__item lang__item_icon_en menu__link">
+                                <span class="lang__text">
+                                    English
+                                </span>
+                                <i class="lang__icon"></i>
+                        </a>
+                                                        <div class="lang__dropdown">
+                                                                                                                        <a
+                                                class="lang__item lang__item_icon_ar"
+                                                href="/ar2/youtube-downloader"
+                                            >
+                                                <span class="lang__text">
+                                                    Arabic
+                                                </span>
+                                                <i class="lang__icon"></i>
+                                            </a>
+                                                                                                                                                                <a
+                                                class="lang__item lang__item_icon_de"
+                                                href="/de2/youtube-downloader"
+                                            >
+                                                <span class="lang__text">
+                                                    Deutsch
+                                                </span>
+                                                <i class="lang__icon"></i>
+                                            </a>
+                                                                                                                                                                <a
+                                                class="lang__item lang__item_icon_es"
+                                                href="/es2/youtube-downloader"
+                                            >
+                                                <span class="lang__text">
+                                                    Spanish
+                                                </span>
+                                                <i class="lang__icon"></i>
+                                            </a>
+                                                                                                                                                                <a
+                                                class="lang__item lang__item_icon_fr"
+                                                href="/fr2/youtube-downloader"
+                                            >
+                                                <span class="lang__text">
+                                                    French
+                                                </span>
+                                                <i class="lang__icon"></i>
+                                            </a>
+                                                                                                                                                                <a
+                                                class="lang__item lang__item_icon_hi"
+                                                href="/hi2/youtube-downloader"
+                                            >
+                                                <span class="lang__text">
+                                                    हिन्दी
+                                                </span>
+                                                <i class="lang__icon"></i>
+                                            </a>
+                                                                                                                                                                <a
+                                                class="lang__item lang__item_icon_it"
+                                                href="/it2/youtube-downloader"
+                                            >
+                                                <span class="lang__text">
+                                                    Italian
+                                                </span>
+                                                <i class="lang__icon"></i>
+                                            </a>
+                                                                                                                                                                <a
+                                                class="lang__item lang__item_icon_ja"
+                                                href="/ja2/youtube-downloader"
+                                            >
+                                                <span class="lang__text">
+                                                    日本語
+                                                </span>
+                                                <i class="lang__icon"></i>
+                                            </a>
+                                                                                                                                                                <a
+                                                class="lang__item lang__item_icon_pt"
+                                                href="/pt2/youtube-downloader"
+                                            >
+                                                <span class="lang__text">
+                                                    Portuguese
+                                                </span>
+                                                <i class="lang__icon"></i>
+                                            </a>
+                                                                                                                                                                <a
+                                                class="lang__item lang__item_icon_ru"
+                                                href="/ru2/youtube-downloader"
+                                            >
+                                                <span class="lang__text">
+                                                    Русский
+                                                </span>
+                                                <i class="lang__icon"></i>
+                                            </a>
+                                                                                                            </div>
+                                                </div>
+                </div>
+                <div class="menu__toggle">
+                    <img
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAQAAABpN6lAAAAAAXNSR0IArs4c6QAAAQ9JREFUeNrt2kFuglAYhdE7ky7GENeqBgZdS2O6CI2uBCe0w84KprzkFc65G/jVGAZ8AQAAAAAAyCF9Hnnm65/vmXu6tHnJW96rOH65jenTzP/4n1UcvfQuaTLH6n79n3WZ4VDFqWU2ps2kvopTS+2cSY8qDi21W6as4MH32wZfwKR7FYeW2jWTuioOLbVjJrUZqzi1xMbsky0/CE+ZpcmlinOX3kd2malJv7I/wphTdnlJm3NuGao4/y8bcs0x+wAAAADoA/QB+gB9gD5gW69F9AH6AH2APkAfoA/QB+gD9AH6AAAAAAB9gD5AH6AP0Aes/7WIPkAfoA/QB+gD9AH6AH2APkAfAAAAAAAAbNI3TXVHEgekpdIAAAAASUVORK5CYII="
+                        width="128"
+                        height="128"
+                        alt=""
+                    >
+                </div>
+            </div>
+    </div>
+</div>
+                    <div class="sn-video-downloader">
+        <div class="advantages">
+    <div class="container topform">
+
+                            <h1>
+                    YouTube video downloader
+                </h1>
+            
+            <h2 class='promo__title title title_level_2'>
+                To download a video from a <span>link!</span>
+            </h2>
+
+
+            <div class="formInput">
+                <form>
+                    <div class="inner-form">
+                        <div class="input-field second-wrap">
+                            <input id="search" type="text" placeholder="Paste your video link here" autocomplete="off">
+                        </div>
+                        <div class="input-field third-wrap">
+                            <button class="btn-search" type="submit" aria-label="Search">
+                                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 512 512">
+                                    <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+    </div>
+    <img class="loader8" src="/assets/img/loader.gif" width="150" height="20" alt="">
+    <div id="form-app-root"></div>
+</div>
+
+        <div id="promo" class="promo line">
+  <div class="container">
+    <div class="promo__img">
+      <!-- <img > -->
+      <picture>
+        
+                  <source srcset="/assets/img/youtube/illustration-promo-mob.webp" media="(max-width: 860px)" />
+          <source type="image/webp" srcset="/assets/img/youtube/illustration-promo-laptop.webp">
+          <img src="/assets/img/youtube/illustration-promo.png" class="promo__img-item" width="460" height="385"
+            alt="illustration-promo">
+              </picture>
+    </div>
+    <div class="promo__right">
+      <h2 class="promo__title title title_level_2">
+        Download YouTube video from URL for Free.
+      </h2>
+            <div class="promo__desc">
+        <p class="promo__text">
+          Download your favorite video from YouTube in just one click. Video Downloader Pro is a Free magic tool helping you to download any media content from any website all over the Net.
+        </p>
+      </div>
+            <div class="promo__advantage">
+        It’s absolutely free!
+      </div>
+    </div>
+  </div>
+</div>
+
+        <div class="how-to-download">
+    <h2 class="title title_level_2">How to use online YouTube Downloader 2023</h2>
+
+    <div class="container">
+        <div class="step-list">
+                                          <div class="step">
+                    <div>
+                        <div class='circle'>1</div>
+                        <p>Go to the URL of the video you want to download and copy its link from the address bar of your browser.</p>
+                    </div>
+                    <picture>
+                        <source type="image/webp" srcset='/assets/img/youtube/1.webp'>
+                        <img src='/assets/img/youtube/how-to-download-1.png' width="414" height="196" alt="step-0"/>
+                    </picture>
+                </div>
+                                                                      <div class="step">
+                    <div>
+                        <div class='circle'>2</div>
+                        <p>Paste the Video URL on to the corresponding field on the Video Downloader Pro website.</p>
+                    </div>
+                    <picture>
+                        <source type="image/webp" srcset='/assets/img/youtube/2.webp'>
+                        <img src='/assets/img/youtube/how-to-download-2.png' width="414" height="196" alt="step-1"/>
+                    </picture>
+                </div>
+                                                                      <div class="step">
+                    <div>
+                        <div class='circle'>3</div>
+                        <p>Click the search button, the VDP will start preparing the downloading URLs.</p>
+                    </div>
+                    <picture>
+                        <source type="image/webp" srcset='/assets/img/youtube/3.webp'>
+                        <img src='/assets/img/youtube/how-to-download-3.png' width="414" height="196" alt="step-2"/>
+                    </picture>
+                </div>
+                                                                                    <div class="step">
+                  <div>
+                      <div class='circle'>4</div>
+                      <p>Select the desired YouTube video format (mp4 or mp3) and click the &quot;Download&quot; button.</p>
+                  </div>
+                  <picture>
+                      <source type="image/webp" srcset="/assets/img/how-to-download/3.webp">
+                      <img src="/assets/img/how-to-download/3.png" width="400" height="130" alt="step-3"/>
+                  </picture>
+                </div>
+                          
         </div>
     </div>
+</div>
 
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-    <script>
-        const START_INC = 1; //Başlangıç sayısı
-const INC_TIME = 1; //Interval süresi
-const INC_AMOUNTH = 0.003; //Artış miktarı
-const RANDOM_TIME_UP_EXPIRE = 1.99; //Butona basmazsa belirtilen  random süre max aralığında durur
-const button = document.getElementById('generator-button');
-const generatorText = document.getElementById('generator-text');
-const resetButton = document.getElementById('reset-generator');
-const localName = 'startOverTime_24'
+        <div class="other-links container">
+    <h2 class="title title_level_2">
+        You can download and save videos online:
+    </h2>
+    <div class='item-list'>
+                    <a href="/en2/facebook-video-downloader" class="other-links-item" >
+                <img src="/assets/img/icons/facebook.svg" width="140" height="140" style="max-width:140px;" alt="Facebook">
+                <button class="btn btn-fb">
+                    Facebook
+                </button>
+            </a>
+                            <a href="/en2/instagram-video-downloader"  class="other-links-item">
+                <img src="/assets/img/icons/instagram.svg" width="140" height="140" style="max-width:140px;" alt="Instagram">
+                <button  class="btn btn-inst">
+                    Instagram
+                </button>
+            </a>
+                            <a href="/en7/twitter-video-downloader" class="other-links-item">
+                <img src="/assets/img/icons/twitter.svg" width="140" height="140" style="max-width:140px;" alt="Twitter">
+                <button class="btn btn-tw">
+                    Twitter
+                </button>
+            </a>
+                    </div>
+</div>
 
+        <div class="container benefits-container">
+    <div class='centered'>
+        <h2 class="title title_level_2">Main advantages</h2>
+        <div>Why is it better to download a video from Video Downloader Pro?</div>
+    </div>
 
-let isStarted = false, lastNumber = null, counter = null, savedItems = [], randomTimeOut = null;
+    <div class='benefits'>
+        <div>
+            <img src="/assets/img/benefits/ill1.png" width="100" height="65" alt="step" loading="lazy"/>
+            <h3 class='heading'>Download for free</h3>
+            <p>You can download a video completely free!</p>
+        </div>
 
-function reset() {
-    generatorText.innerText = START_INC.toFixed(2);
+        <div>
+            <img src="/assets/img/benefits/ill2.png" width="100" height="65" alt="step" loading="lazy"/>
+            <h3 class='heading'>Doesn’t require installation</h3>
+            <p>In order to download a video you will need only a link</p>
+        </div>
 
-    const parent = $('.generator-actions');
-    const store = getLocalStore(localName);
-    parent.html("");
+        <div>
+            <img src="/assets/img/benefits/ill3.png" width="100" height="65" alt="step" loading="lazy"/>
+            <h3 class='heading'>Device support</h3>
+            <p>The website works on all devices and popular browsers</p>
+        </div>
 
-    const currentTime = new Date().getTime();
-    if (store > currentTime) {
-        function calculateTime() {
-            const localStore = getLocalStore(localName);
-            parent.html("");
-            var now = new Date().getTime();
-            const remainingTime = localStore - now;
-            var hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+    </div>
 
-            parent.append(`<div class="generator-countdown">${hours}:${minutes}:${seconds}</div>`)
-        }
+    <section class='benefits-vertical'>
+        <div>
+            <div class='unit'>
+                <h3 class='heading'>
+                What video quality does our downloader support!
+                </h3>
+                <div>
+                    <p>
+                        Most videos in the format of MO4 and SO, HD, FullHD, 2K, 4K. The quality depends on the video that is being downloaded. If the author downloaded it in the 1080p format, then it can be saved in the same quality.
+                    </p>
+                </div>
+            </div>
+            <picture>
+                <source type="image/webp" srcset="/assets/img/benefits/ill5.webp">
+                <img src="/assets/img/benefits/ill5.png" width="335" height="200" alt="video-quality" loading="lazy"/>
+            </picture>
+        </div>
+        <div>
+            <div class='unit'>
+                <h3 class='heading'>
+                    Which browsers does our downloader work with?
+                </h3>
+                <div>
+                    <p>
+                    Our downloader works with Google Chrome, Mozilla Firefox, Opera and all the browsers based on Chromium.
+                    </p>
+                </div>
+            </div>
+            <picture>
+                <source type="image/webp" srcset="/assets/img/benefits/ill6.webp">
+                <img src="/assets/img/benefits/ill6.png" width="335" height="200" alt="video-quality" loading="lazy"/>
+            </picture>
+        </div>
+    </section>
 
-        calculateTime();
+</div>
 
-        let interval = setInterval(() => {
-            const localStore = getLocalStore(localName);
-            var now = new Date().getTime();
-            if (localStore - now <= 0) {
-                clearInterval(interval);
-                removeLocalStore(localName);
-                parent.html("");
-                parent.append(`<button   class="btn-start" id="generator-button">Start</button>`);
-                parent.append(`<a href="javascript:;" id="reset-generator">Next Aviator flight detected.</a>`);
-            } else {
-                reduceLocalStore(localName)
-                calculateTime()
-            }
-        }, 1000);
+        <div class="advantages normal_align" id="advantages">
+            <div class="container">
+                <h2 class="title title_level_2 title_border_yes advantages__title">
+                    The best Youtube video downloader in 2023
+                </h2>
+                                          <p>
+                        If you enjoy watching visual content online, you&#039;ve probably come across interesting content that you intend to save and view later. You&#039;d also wish to download Youtube video content so that you can easily spread the cheer to your friends and family on social sites such as Whatsapp, Twitter, and Snapchat.
+                      </p>
+                                          <p>
+                        The hurdle is that most content streaming platforms do not offer a straightforward method for viewers to grab Youtube videos uploaded on their websites. They want to limit your enjoyment of the content to their apps only.
+                      </p>
+                                          <p>
+                        What can you do? No need to fret. Our free online video downloader comes in to solve that problem. We&#039;ve created a robust tool that&#039;ll enable you to download Youtube video online quickly and in super quality. And all you&#039;ll require is the video&#039;s URL only.
+                      </p>
+                                </div>
+        </div>
+        <section id="faq" class="main-faq" itemscope itemtype="https://schema.org/FAQPage">
+    <div class="main-faq__wrapper container">
+        <h2 class="main-faq__title title title_level_2">
+            FAQs
+        </h2>
+                    <div class="accordion" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <button
+                    id=question_0
+                    class="accordion__button"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls=content_0
+                >
+                    <h3 itemprop="name">
+                        Can I use my mobile phone?
+                    </h3>
+                </button>
+                <div
+                    id=content_0
+                    class="accordion__content"
+                    itemscope
+                    itemprop="acceptedAnswer"
+                    itemtype="https://schema.org/Answer"
+                >
+                    <p itemprop="text">
+                        Yes, you can create content wherever you are. Our tool is the most reliable avenue to download video or music from URL whether you are using your computer or mobile phone.
+                    </p>
+                </div>
+            </div>
+                    <div class="accordion" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <button
+                    id=question_1
+                    class="accordion__button"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls=content_1
+                >
+                    <h3 itemprop="name">
+                        Which languages ​do you support?
+                    </h3>
+                </button>
+                <div
+                    id=content_1
+                    class="accordion__content"
+                    itemscope
+                    itemprop="acceptedAnswer"
+                    itemtype="https://schema.org/Answer"
+                >
+                    <p itemprop="text">
+                        Our tool supports 9 popular languages. This makes it convenient for users from different regions of the globe.
+                    </p>
+                </div>
+            </div>
+                    <div class="accordion" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <button
+                    id=question_2
+                    class="accordion__button"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls=content_2
+                >
+                    <h3 itemprop="name">
+                        What browsers do you support?
+                    </h3>
+                </button>
+                <div
+                    id=content_2
+                    class="accordion__content"
+                    itemscope
+                    itemprop="acceptedAnswer"
+                    itemtype="https://schema.org/Answer"
+                >
+                    <p itemprop="text">
+                        You can use any device and access our tool from all browsers. Do you love Chrome, Microsoft Edge, or Opera? Be our guest. This tool doesn&#039;t discriminate.
+                    </p>
+                </div>
+            </div>
+                    <div class="accordion" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <button
+                    id=question_3
+                    class="accordion__button"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls=content_3
+                >
+                    <h3 itemprop="name">
+                        Can I pick the video quality?
+                    </h3>
+                </button>
+                <div
+                    id=content_3
+                    class="accordion__content"
+                    itemscope
+                    itemprop="acceptedAnswer"
+                    itemtype="https://schema.org/Answer"
+                >
+                    <p itemprop="text">
+                        Absolutely! Once you place the URL on the tool&#039;s text box, press the Download bar to your right to view all available formats. Press the selection bar against your preferred format.
+                    </p>
+                </div>
+            </div>
+                    <div class="accordion" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <button
+                    id=question_4
+                    class="accordion__button"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls=content_4
+                >
+                    <h3 itemprop="name">
+                        Is it free?
+                    </h3>
+                </button>
+                <div
+                    id=content_4
+                    class="accordion__content"
+                    itemscope
+                    itemprop="acceptedAnswer"
+                    itemtype="https://schema.org/Answer"
+                >
+                    <p itemprop="text">
+                        It&#039;s totally free. Not even a signing up or account creation is required to use this service. You&#039;ll however view some adverts which we allow to enable us to get commissions to keep this awesome service cost-free.
+                    </p>
+                </div>
+            </div>
+                    <div class="accordion" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <button
+                    id=question_5
+                    class="accordion__button"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls=content_5
+                >
+                    <h3 itemprop="name">
+                        Is it fast?
+                    </h3>
+                </button>
+                <div
+                    id=content_5
+                    class="accordion__content"
+                    itemscope
+                    itemprop="acceptedAnswer"
+                    itemtype="https://schema.org/Answer"
+                >
+                    <p itemprop="text">
+                        Super-fast! Just access the service online from a browser of your choice or open it by clicking the video downloader link and start converting videos.
+                    </p>
+                </div>
+            </div>
+            </div>
+</section>
+    </div>
+            </div>
+            <footer class="container">
+    <div class="footer">
+        <div>
+            <div class="logo logo_size_small">
+                Video Downloader Pro
+            </div>
+            <a href="/terms.html">Terms of Service</a>
+            <a href="/privacy-policy.html">Privacy Policy</a>
+        </div>
 
-    } else {
-        parent.html("");
-        parent.append(`<button   class="btn-start" id="generator-button">Start</button>`);
-        parent.append(`<a href="javascript:;" id="reset-generator">Next Aviator flight detected.</a>`);
-    }
-}
-reset();
+        <div>
+            <a href="/en38/youtube-downloader">Download Youtube video</a>
+            <a href="/en2/instagram-video-downloader">Download Instagram video</a>
+            <a href="/en2/facebook-video-downloader">Download Facebook video</a>
+            <a href="/en7/twitter-video-downloader">Download Twitter video</a>
+        </div>
 
-$(document).on("click", "#generator-button", function () {
-    if ([...this.classList].includes('btn-start')) {
-        startTheCountdown(this);
-    } else if ([...this.classList].includes('btn-stop')) {
-        // stopTheCountdown(this)
-    } else if ([...this.classList].includes('btn-save')) {
-        saveTheCount(this)
-    }
-})
+        <div>
+            <a href="/ru38/">Скачать видео</a>
+            <a href="/en39/">Download video</a>
+            <a href="/ja7/">ビデオをダウンロード</a>
+            <a href="/de7/">Video herunterladen</a>
+            <a href="/pt38/">Descargar video</a>
+        </div>
 
+        <div>
+            <a href="/fr38/">Télécharger la video</a>
+            <a href="/it38/">Scarica video</a>
+            <a href="/es38/">Baixar video</a>
+            <a href="/ar38/">تحميل الفيديو</a>
+            <a href="/hi7/">х वीडियो डाउनलोड करें J</a>
+        </div>
 
-resetButton.addEventListener('click', function () {
-    button.classList.remove('btn-save');
-    button.classList.add('btn-start');
-    button.innerText = "Başlat";
-    reset();
-    this.classList.remove("show");
-})
+    </div>
 
-function startTheCountdown(e) {
-    let tmpNumber = START_INC;
-    generatorText.innerText = tmpNumber.toFixed(2);
-    let ms = +(Math.floor(Math.random() * (1000 * RANDOM_TIME_UP_EXPIRE)));
+    <div class='about-app'>
+        <div >
+            <div class="about-app__text">
+                    Current version:
+                    <span
+                        class="ver_current_yes"
+                        data-verFirefox="1.5.0"
+                        data-verOpera="1.8.1"
+                    ></span>
+                </div>
+            <div class="about-app__text">
+                License: free
+            </div>
+        </div>
 
-    randomTimeOut = setTimeout(() => {
-        stopTheCountdown(e);
-    }, ms)
-    counter = setInterval(() => {
-        tmpNumber += INC_AMOUNTH;
-        lastNumber = tmpNumber.toFixed(2)
-        generatorText.innerText = lastNumber;
-    }, INC_TIME * 10);
-    e.classList.remove('btn-start');
-    document.body.style.setProperty('--animation-status', 'running')
-    e.classList.add('btn-stop');
-    e.innerText = "...";
+        <div class='rights'>All Rights Reserved.</div>
+    </div>
+</footer>
+        </div>
+                            <script src="/js/app.js?id=b132bd32b1817862946e"></script>
 
-}
-function stopTheCountdown(e) {
-    clearInterval(counter);
-    clearTimeout(randomTimeOut);
-    e.classList.remove('btn-stop');
-    e.classList.add('btn-save');
-    document.body.style.setProperty('--animation-status', 'paused')
-    resetButton.classList.add("show");
-    e.innerHTML = "<i class='fa-solid fa-check'></i>";
-    const time = new Date();
-    time.setDate(time.getDate() + 1);
-    setLocalStore(localName, Math.floor(time.getTime()));
-}
-
-function saveTheCount(e) {
-    clearInterval(counter);
-    clearTimeout(randomTimeOut);
-    e.classList.remove('btn-stop');
-    e.classList.remove('btn-save');
-    e.classList.add('btn-start');
-    resetButton.classList.remove("show");
-    e.innerText = "Başlat";
-    savedItems.push({ time: new Date(), number: lastNumber });
-    reset();
-    console.log("Sayım kaydedildi", savedItems)
-}
-
-
-function reduceLocalStore(key) {
-    let store = getLocalStore(key);
-    localStorage.setItem(key, --store)
-}
-
-
-
-function setLocalStore(key, value) {
-    localStorage.setItem(key, JSON.stringify(value))
-}
-
-
-function removeLocalStore(key) {
-    localStorage.removeItem(key);
-
-}
-
-function getLocalStore(key) {
-    const store = localStorage.getItem(key);
-    if (!store) return;
-    return store;
-}
-    </script>
-</body>
+                            <script src="/js/accordion.js?id=78443e728c253833c853"></script>
+                        </body>
 </html>
